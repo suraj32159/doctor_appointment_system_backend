@@ -6,6 +6,7 @@ from django.contrib.auth.models import User
 class BookAppointment(models.Model):
     user = models.ForeignKey(User, on_delete=models.CASCADE)  # Assuming appointments are associated with a user
     date_time = models.DateTimeField()  # Date and time of the appointment
+    time_interval = models.CharField(max_length=100)
     location = models.CharField(max_length=100)  # Location of the appointment
     description = models.TextField(blank=True, null=True)  # Optional description
 

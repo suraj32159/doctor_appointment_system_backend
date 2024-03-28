@@ -41,5 +41,5 @@ class BookAppointmentSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = BookAppointment
-        fields = ['id', 'date_time', 'location', 'description', 'user_details']
+        fields = ['id', 'date_time', 'time_interval', 'location', 'description', 'user_details']
         read_only_fields = ['id']

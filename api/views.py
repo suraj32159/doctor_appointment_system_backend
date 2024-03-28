@@ -21,12 +21,12 @@ class BookAppointmentAPIView(mixins.ListModelMixin, mixins.CreateModelMixin, gen
         return Response(serializer.data)
 
     def post(self, request, *args, **kwargs):
-        user_id = request.data.get('user_id')
+        email = request.data.get('email')
         try:
-            user = User.objects.get(id=user_id)
+            user = User.objects.get(email=email)
         except User.DoesNotExist:
             return Response({'error': 'User with specified ID does not exist.'}, status=status.HTTP_400_BAD_REQUEST)
-        serializer = self.get_serializer(data=request.data, context={'user_id': user_id})
+        serializer = self.get_serializer(data=request.data, context={'user_id': user.id})
         if serializer.is_valid():
             serializer.save(user=user)
             return Response(serializer.data, status=status.HTTP_201_CREATED)
