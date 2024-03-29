@@ -40,7 +40,9 @@ INSTALLED_APPS = [
     'rest_framework',
     'api',
     'corsheaders',
-    'payments'
+    'payments',
+    'django_celery_beat',
+    'django_celery_results'
 ]
 
 MIDDLEWARE = [
@@ -129,3 +131,21 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 CORS_ORIGIN_ALLOW_ALL = True
 CORS_ALLOW_CREDENTIALS = True
+
+EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
+EMAIL_HOST = 'smtp.gmail.com'
+EMAIL_PORT = 587
+EMAIL_USE_TLS = True
+EMAIL_HOST_USER = 'punarvasuaatreyaayurveda@gmail.com'
+EMAIL_HOST_PASSWORD = 'bjukjanvpiotwawg'
+
+# Celery Settings
+CELERY_BROKER_URL = "redis://127.0.0.1:6379/0"
+CELERY_RESULT_BACKEND = 'django-db'
+CELERY_TIMEZONE = "Asia/Kolkata"
+CELERY_RESULT_EXTENDED = True
+CELERY_BEAT_SCHEDULER = 'django_celery_beat.schedulers:DatabaseScheduler'
+
+# Stripe Settings
+STRIPE_PUBLISH_KEY = 'pk_test_51OzCSySAqgza5Jc9FDSQy2SPPvKD7Builay2tcL7PwKdLlOt6L7vwk0z5msjIy0uTUprIEOsGSTQHXrONxF70PMZ00rjv0c0bT'
+STRIPE_SECRET_KEY = 'sk_test_51OzCSySAqgza5Jc9mxaSZ5nycWKg2weAM8M57KMve7focvb2phcPh4Qs9FW8TZP2gTQpJZUe6lLFrsVKYcXQzjRn002AsagC4n'
